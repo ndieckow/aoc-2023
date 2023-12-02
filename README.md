@@ -7,4 +7,4 @@ In general, $N$ always refers to the number of lines in the input. If not, I wil
 For part 1, the complexity is $\mathcal O(N \cdot m)$, where $m$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
 
 # Day 02
-$\mathcal O(N)$
+$\mathcal O(N)$. I initially missed the part about returning the cubes after each set is drawn, which cost me some time. Didn't get on the leaderboard.
