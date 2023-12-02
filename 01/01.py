@@ -4,6 +4,7 @@ inpath = __file__.split(os.sep)[-1].split('.')[0] + '.in'
 input = open(inpath).read().split('\n')
 
 num_dict = {
+    'zero': 0,
     'one': 1,
     'two': 2,
     'three': 3,
