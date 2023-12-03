@@ -1,5 +1,3 @@
-import math
-
 def memoize(f):
     mem = {}
     def F(*x):
