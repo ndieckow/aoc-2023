@@ -24,3 +24,10 @@ My solution for part 2 has the same complexity, but could maybe be done faster, 
 Today went a lot better! I was reasonably quick and finished both problems in under ten minutes, giving me ranks 304 and 313 for both parts, respectively. It's not top 100, but it's good enough to be mentioned on the solution page.
 
 For the complexity, let $N$ be the number of cards, $n_{\mathrm{win}}$ the number of winning numbers and $n_{\mathrm{own}}$ those that you have. All of the `split`s are linear in the length of the line, which is equivalent to $\mathcal O(n_\mathrm{win} + n_\mathrm{own})$, assuming that the numbers are not unbounded. The complexity of set intersection grows linearly in the smaller set, i.e. the winning numbers. In total, we have $\mathcal O(N m)$ where I've set $m \coloneqq n_\mathrm{win} + n_\mathrm{own}$. Part 2 has the same complexity: The "additional cards" thing is handled by integer arithmetic, and the lack of intersection does not reduce the complexity because we still need to process the input.
+
+## Day 05
+soon
+
+## Day 06
+Let $T$ and $D$ denote the values for time and distance, respectively.
+For part 1, I just looped through all of the values. The complexity is thus $\mathcal O(T)$. You can better with binary search. Part 2 would have also worked with this algorithm (maybe 10s with ordinary Python on an Apple M1). I just solved the equation $x (T-x) = 0$ with solutions $x_{+,-} = \frac{T}{2} \pm \sqrt{\frac{T^2}{4} - D}$ and counted the number of integers inbetween the solutions by doing $\lfloor x_+ \rfloor - \lceil x_- \rceil$.
