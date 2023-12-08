@@ -37,3 +37,8 @@ Sweet problem. I noticed that my mental pace wasn't at its peak today and decide
 I think the best approach is to store all information in a well-chosen state, and then let a sorting algorithm do all the sorting. For part 1, I chose `(kind, others_same, hand_emb, bid)`, where `hand_emb` is just an embedding of the space of cards into the space of integers according to the desired cardo order. This embedding differs between both parts. Having hte bid in the state is not necessary, but it's convenient for computing the solution.
 
 Because of the sorting, the complexity is $\mathcal O(N \log N)$.
+
+## Day 08
+I'll have to think about the complexity a bit. It's too simple to say that it depends linearly on the size of the graph, because the problem is so dependent on the graph's structure.
+
+Overall a nice problem, requiring a bit of thought for the second part, because the brute-force approach doesn't work anymore.
