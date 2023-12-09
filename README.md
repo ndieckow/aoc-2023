@@ -30,11 +30,11 @@ soon
 
 ## Day 06
 Let $T$ and $D$ denote the values for time and distance, respectively.
-For part 1, I just looped through all of the values. The complexity is thus $\mathcal O(T)$. You can better with binary search. Part 2 would have also worked with this algorithm (maybe 10s with ordinary Python on an Apple M1). I just solved the equation $x (T-x) = 0$ with solutions $x_{+,-} = \frac{T}{2} \pm \sqrt{\frac{T^2}{4} - D}$ and counted the number of integers inbetween the solutions by doing $\lfloor x_+ \rfloor - \lceil x_- \rceil + 1$.
+For part 1, I just looped through all of the values. The complexity is thus $\mathcal O(T)$. You can better with binary search. Part 2 would have also worked with this algorithm (maybe 10s with ordinary Python on an Apple M1). I just solved the equation $x (T-x) = 0$ with solutions $x_{+,-} = \frac{T}{2} \pm \sqrt{\frac{T^2}{4} - D}$ and counted the number of integers in-between the solutions by doing $\lfloor x_+ \rfloor - \lceil x_- \rceil + 1$.
 
 ## Day 07
 Sweet problem. I noticed that my mental pace wasn't at its peak today and decided to take it slow, but surprisingly still placed 600th and 391th in parts 1 and 2, respectively.
-I think the best approach is to store all information in a well-chosen state, and then let a sorting algorithm do all the sorting. For part 1, I chose `(kind, others_same, hand_emb, bid)`, where `hand_emb` is just an embedding of the space of cards into the space of integers according to the desired cardo order. This embedding differs between both parts. Having hte bid in the state is not necessary, but it's convenient for computing the solution.
+I think the best approach is to store all information in a well-chosen state, and then let a sorting algorithm do all the sorting. For part 1, I chose `(kind, others_same, hand_emb, bid)`, where `hand_emb` is just an embedding of the space of cards into the space of integers according to the desired card order. This embedding differs between both parts. Having hte bid in the state is not necessary, but it's convenient for computing the solution.
 
 Because of the sorting, the complexity is $\mathcal O(N \log N)$.
 
@@ -44,6 +44,6 @@ I'll have to think about the complexity a bit. It's too simple to say that it de
 Overall a nice problem, requiring a bit of thought for the second part, because the brute-force approach doesn't work anymore.
 
 ## Day 09
-Let $\ell$ be the length of the history (i.e. how many numbers) and $d$ the number of times you can take the differences until you reach all zeros. We my assume $d \leq \ell$. For a particular line, the complexity of repeatedly taking differences is $$\sum_{i=1}^d \ell - i = d\ell - \sum_{i=1}^d i = d\ell - \frac{d(d+1)}{2},$$ which is $\mathcal O(\ell^2)$ in the worst case (the worst case being $d = \ell$).
+Let $\ell$ be the length of the history (i.e. how many numbers) and $d$ the number of times you can take the differences until you reach all zeros. We may assume $d \leq \ell$. For a particular line, the complexity of repeatedly taking differences is $$\sum_{i=1}^d \ell - i = d\ell - \sum_{i=1}^d i = d\ell - \frac{d(d+1)}{2},$$ which is $\mathcal O(\ell^2)$ in the worst case (the worst case being $d = \ell$).
 
 Including all lines, the overall worst-case complexity for both parts is then $\mathcal O(N \ell^2)$.
