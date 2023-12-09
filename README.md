@@ -45,3 +45,5 @@ Overall a nice problem, requiring a bit of thought for the second part, because 
 
 ## Day 09
 Let $\ell$ be the length of the history (i.e. how many numbers) and $d$ the number of times you can take the differences until you reach all zeros. We my assume $d \leq \ell$. For a particular line, the complexity of repeatedly taking differences is $$\sum_{i=1}^d \ell - i = d\ell - \sum_{i=1}^d i = d\ell - \frac{d(d+1)}{2},$$ which is $\mathcal O(\ell^2)$ in the worst case (the worst case being $d = \ell$).
+
+Including all lines, the overall worst-case complexity for both parts is then $\mathcal O(N \ell^2)$.
