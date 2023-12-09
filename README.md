@@ -42,3 +42,6 @@ Because of the sorting, the complexity is $\mathcal O(N \log N)$.
 I'll have to think about the complexity a bit. It's too simple to say that it depends linearly on the size of the graph, because the problem is so dependent on the graph's structure.
 
 Overall a nice problem, requiring a bit of thought for the second part, because the brute-force approach doesn't work anymore.
+
+## Day 09
+Let $\ell$ be the length of the history (i.e. how many numbers) and $d$ the number of times you can take the differences until you reach all zeros. We my assume $d \leq \ell$. For a particular line, the complexity of repeatedly taking differences is $\sum_{i=1}^d \ell - i = d\ell - \sum_{i=1}^d i = d\ell - \frac{d(d+1)}{2}$, which is $\mathcal O(\ell^2)$ in the worst case (the worst case being $d = \ell$).
