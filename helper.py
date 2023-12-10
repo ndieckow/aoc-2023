@@ -1,3 +1,5 @@
+from collections import defaultdict, Counter, deque
+
 def memoize(f):
     mem = {}
     def F(*x):
@@ -47,3 +49,30 @@ def ints2(line):
             ans.append(int(''.join(cur)))
             cur = []
     return ans
+
+def bfs(start, goal, neighbors):
+    q = deque()
+    q.append(start)
+    dist = dict() # distances
+    par = dict() # parents
+    dist[start] = 0
+    seen = set([start])
+    while q:
+        v = q.pop()
+        if goal is not None and v == goal:
+            break
+        for w in neighbors(v):
+            if w not in seen:
+                seen.add(w)
+                par[w] = v
+                dist[w] = dist[v] + 1
+                q.appendleft(w)
+    return dist, par, seen
+
+def shortest_path(start, end, par):
+    path = [end]
+    cur = end
+    while cur != start:
+        cur = par[cur]
+        path.append(cur)
+    return reversed(path)

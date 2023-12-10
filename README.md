@@ -16,6 +16,7 @@ Day | Part 1 | Part 2 | Comment
 7   | 600    | 391    |
 8   | 342    | 325    |
 9   | 13455  | 13149  | needed sleep
+10  | 1000   | 1958   |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -61,3 +62,10 @@ Overall a nice problem, requiring a bit of thought for the second part, because 
 Let $\ell$ be the length of the history (i.e. how many numbers) and $d$ the number of times you can take the differences until you reach all zeros. We may assume $d \leq \ell$. For a particular line, the complexity of repeatedly taking differences is $$\sum_{i=1}^d \ell - i = d\ell - \sum_{i=1}^d i = d\ell - \frac{d(d+1)}{2},$$ which is $\mathcal O(\ell^2)$ in the worst case (the worst case being $d = \ell$).
 
 Including all lines, the overall worst-case complexity for both parts is then $\mathcal O(N \ell^2)$.
+
+## Day 10
+Not a great day for me. I actually expected a grid puzzle, but not something as gruesome as this. I took my time, but I got part 2 to work on all test inputs, yet the answer wasn't correct for the full input. Very annoying, because this puzzle is hard to debug. In fact, it's still not working. But I found the right answer, by first trying the answer $+1$, and then $+2$, which turned out to be the right answer. So there must be some really weird edge case that I'm not considering, I suppose.
+
+Can't be bothered to do a complexity analysis of this pile of garbage. Maybe at a later date.
+
+I ended up solving part 2 using a clever method I found [on reddit](https://www.reddit.com/r/adventofcode/comments/18evyu9/comment/kcqipbx/). It's much shorter than flood-fill and gives the right answer. These kinds of things are the reason why it's sometimes worth to look at abstract maths, such as topology in this case.
