@@ -11,7 +11,7 @@ Day | Part 1 | Part 2 | Comment
 2   | 3407   | 3047   |
 3   | 5376   | 3456   |
 4   | 304    | 313    |
-5   | 90642  | ?      | solved it a few days late
+5   | 90642  | 66445  | solved it a few days late
 6   | 659    | 3797   |
 7   | 600    | 391    |
 8   | 342    | 325    |
@@ -42,7 +42,7 @@ Today went a lot better! I was reasonably quick and finished both problems in un
 For the complexity, let $N$ be the number of cards, $n_{\mathrm{win}}$ the number of winning numbers and $n_{\mathrm{own}}$ those that you have. All of the `split`s are linear in the length of the line, which is equivalent to $\mathcal O(n_\mathrm{win} + n_\mathrm{own})$, assuming that the numbers are not unbounded. The complexity of set intersection grows linearly in the smaller set, i.e. the winning numbers. In total, we have $\mathcal O(N m)$ where I've set $m \coloneqq n_\mathrm{win} + n_\mathrm{own}$. Part 2 has the same complexity: The "additional cards" thing is handled by integer arithmetic, and the lack of intersection does not reduce the complexity because we still need to process the input.
 
 ## Day 05
-soon
+maybe soon
 
 ## Day 06
 Let $T$ and $D$ denote the values for time and distance, respectively.
