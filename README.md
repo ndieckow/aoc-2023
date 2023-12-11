@@ -1,7 +1,7 @@
 # Advent of Code 2023
 My solution for this year's Advent of Code in Python. Like [last year](https://github.com/ndieckow/aoc2022), I'll try to write a few words about each solution, both focusing on my performance and the complexity of my solutions.
 
-In general, $N$ always refers to the number of lines in the input. If not, I will mention it.
+In general, $N$ always refers to the number of lines in the input. If not, I will mention it. Same holds for $R$ and $C$ (rows and columns) when dealing with grids.
 
 ## Leaderboard Ranks
 
@@ -11,12 +11,13 @@ Day | Part 1 | Part 2 | Comment
 2   | 3407   | 3047   |
 3   | 5376   | 3456   |
 4   | 304    | 313    |
-5   | ?      | ?      | didn't get around to it yet
+5   | 90642  | ?      | solved it a few days late
 6   | 659    | 3797   |
 7   | 600    | 391    |
 8   | 342    | 325    |
 9   | 13455  | 13149  | needed sleep
 10  | 1000   | 1958   |
+11  | 6086   | 6226   |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -69,3 +70,10 @@ Not a great day for me. I actually expected a grid puzzle, but not something as 
 Can't be bothered to do a complexity analysis of this pile of garbage. Maybe at a later date.
 
 I ended up solving part 2 using a clever method I found [on reddit](https://www.reddit.com/r/adventofcode/comments/18evyu9/comment/kcqipbx/). It's much shorter than flood-fill and gives the right answer. These kinds of things are the reason why it's sometimes worth to look at abstract maths, such as topology in this case.
+
+## Day 11
+Need moar sleep x.x
+
+Took me almost an hour to get the doubling of the rows and columns right. Only to have my approach be infeasible in part 2, where I had to implement the clean method I was too lazy to think about. Even though there isn't much to think about: Since the shortest distance was just the Manhattan distance, we can walk all of the columns at once, then all the rows (or vice-versa, doesn't matter). So, to account for the expansion, we just need to count all of the empty rows and columns we pass along the way, and add that number, multiplied with the expansion constant (minus 1), onto the Manhattan distance.
+
+The complexity is $\mathcal O(R C + N^2 m)$, where $N$ is the number of galaxies, and $m$ is the number of empty rows and columns. Technically, $m$ is a worst-case estimate: Actually, the complexity of intersecting two sets scales linearly with the size of the smaller set. You could analyze this further. There is obviously a relationship between $N$ and $m$. I wonder, if the complexity is worse than $\mathcal O((RC)^2)$.
