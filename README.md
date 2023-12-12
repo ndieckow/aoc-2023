@@ -18,6 +18,7 @@ Day | Part 1 | Part 2 | Comment
 9   | 13455  | 13149  | needed sleep
 10  | 1000   | 1958   |
 11  | 6086   | 6226   |
+12  | 2106   | ?      |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -77,3 +78,6 @@ Need moar sleep x.x
 Took me almost an hour to get the doubling of the rows and columns right. Only to have my approach be infeasible in part 2, where I had to implement the clean method I was too lazy to think about. Even though there isn't much to think about: Since the shortest distance was just the Manhattan distance, we can walk all of the columns at once, then all the rows (or vice-versa, doesn't matter). So, to account for the expansion, we just need to count all of the empty rows and columns we pass along the way, and add that number, multiplied with the expansion constant (minus 1), onto the Manhattan distance.
 
 The complexity is $\mathcal O(R C + N^2 m)$, where $N$ is the number of galaxies, and $m$ is the number of empty rows and columns. Technically, $m$ is a worst-case estimate: Actually, the complexity of intersecting two sets scales linearly with the size of the smaller set. You could analyze this further. There is obviously a relationship between $N$ and $m$. I wonder, if the complexity is worse than $\mathcal O((RC)^2)$.
+
+## Day 12
+It's not going too well at the moment. Analysis maybe soon.
