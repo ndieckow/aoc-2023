@@ -18,7 +18,8 @@ Day | Part 1 | Part 2 | Comment
 9   | 13455  | 13149  | needed sleep
 10  | 1000   | 1958   |
 11  | 6086   | 6226   |
-12  | 2106   | ?      |
+12  | 2106   | 1445   |
+13  | 3518   | 3902   |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -81,3 +82,6 @@ The complexity is $\mathcal O(R C + N^2 m)$, where $N$ is the number of galaxies
 
 ## Day 12
 It's not going too well at the moment. Analysis maybe soon.
+
+## Day 13
+Nasty day. At least in my opinion. According to my ranking, yesterday was apparently easier. Once again, I spent way too much time debugging stuff.
