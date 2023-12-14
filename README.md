@@ -20,6 +20,7 @@ Day | Part 1 | Part 2 | Comment
 11  | 6086   | 6226   |
 12  | 2106   | 1445   |
 13  | 3518   | 3902   |
+14  | 597    | 1316   |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -85,3 +86,8 @@ It's not going too well at the moment. Analysis maybe soon.
 
 ## Day 13
 Nasty day. At least in my opinion. According to my ranking, yesterday was apparently easier. Once again, I spent way too much time debugging stuff.
+
+## Day 14
+Got the top 1000 for part 1 after a row a bad days. Quite happy about that :) Wasted a lot of time on debugging for part 2. Turned out that I wasn't thinking it through: Since we've already done a few cycles, the calculation for the number of remaining cycles is $(1000000000 - n) \% (m - n)$, where $m$ is the index where you notice repetition, and $n$ is the index where the repetition starts. I simply forgot the subtraction of $n$ and got a wrong answer.
+
+Complexity analysis: maybe soon
