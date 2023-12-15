@@ -21,6 +21,7 @@ Day | Part 1 | Part 2 | Comment
 12  | 2106   | 1445   |
 13  | 3518   | 3902   |
 14  | 597    | 1316   |
+15  | 397    | 1683   |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -91,3 +92,11 @@ Nasty day. At least in my opinion. According to my ranking, yesterday was appare
 Got the top 1000 for part 1 after a row a bad days. Quite happy about that :) Wasted a lot of time on debugging for part 2. Turned out that I wasn't thinking it through: Since we've already done a few cycles, the calculation for the number of remaining cycles is $(1000000000 - n) \% (m - n)$, where $m$ is the index where you notice repetition, and $n$ is the index where the repetition starts. I simply forgot the subtraction of $n$ and got a wrong answer.
 
 Complexity analysis: maybe soon
+
+## Day 15
+An easier problem, compared to the previous days. There was more of a focus on reading comprehension and computer science education, which is cool. For some reason, I thought sorting would be involved, so the members of my boxes look like (value, key) instead of (key, value). Does not really matter, though.
+
+Let $N$ be the number of (comma-separated) instructions. Hash computation (part 1) is linear in the string length. If we assume that all strings are bounded in length, part 1 is just linear in $N$.
+
+For part 2, let's first consider the operation level. Let $\ell$ the the length of the label. Both insertion (`a=1`) and deletion (`a-`) require hashing, which is $\mathcal O(\ell)$. Let $b$ be the number of elements in the considered box. Checking whether the label is already present is $\mathcal O(b)$. So, insertion and deletion both have a complexity of $\mathcal O(\ell + \max b)$. However, in practice, we rarely use labels with unbounded length, and the hash function is chosen in such a way that it equally distributes amongst all boxes, so that their size is kept small. Both of these assumptions yield $\mathcal O(1)$ armortized time complexity for both insertion and deletion.
+So in total, $\mathcal O(N)$ for part 2 as well.
