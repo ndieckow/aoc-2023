@@ -22,6 +22,7 @@ Day | Part 1 | Part 2 | Comment
 13  | 3518   | 3902   |
 14  | 597    | 1316   |
 15  | 397    | 1683   |
+16  | 1552   | 1430   |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -100,3 +101,5 @@ Let $N$ be the number of (comma-separated) instructions. Hash computation (part 
 
 For part 2, let's first consider the operation level. Let $\ell$ the the length of the label. Both insertion (`a=1`) and deletion (`a-`) require hashing, which is $\mathcal O(\ell)$. Let $b$ be the number of elements in the considered box. Checking whether the label is already present is $\mathcal O(b)$. So, insertion and deletion both have a complexity of $\mathcal O(\ell + \max b)$. However, in practice, we rarely use labels with unbounded length, and the hash function is chosen in such a way that it equally distributes amongst all boxes, so that their size is kept small. Both of these assumptions yield $\mathcal O(1)$ armortized time complexity for both insertion and deletion.
 So in total, $\mathcal O(N)$ for part 2 as well.
+
+## Day 16

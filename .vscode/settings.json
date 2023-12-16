@@ -8,5 +8,6 @@
     ],
     "cSpell.enableFiletypes": [
         "!python"
-    ]
+    ],
+    "cloudcode.duetAI.inlineSuggestions.enableAuto": false
 }
