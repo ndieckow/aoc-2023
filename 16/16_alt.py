@@ -1,5 +1,7 @@
 # DISCLAIMER: This solution does not work yet.
 
+# analyze (0, 19); should be crazy long, but this algorithm just says 60
+
 import os
 from helper import *
 import sys
@@ -32,25 +34,17 @@ def reverse(dir):
     return (-dir[0], -dir[1])
 
 DP = {}
-def solve(pos, dir, depth=100):
-    #print(pos, dir)
-    #print(DP)
+def solve(pos, dir, hist=[]):
     # Return set of energized cells
-    # pos is expected to NOT point at an empty cell
-    if grid[pos] == '+' or depth == 0:
+    if grid[pos] == '+':
         return set()
-    state = (pos, dir, depth)
+    state = (pos, dir)
     if state in DP:
         return DP[state]
     
     ans = None
     dirs = []
-    if grid[pos] == '.':
-        pos, cells = move_batch(pos, dir)
-        ans = cells | solve(pos, dir, depth-1)
-        DP[(pos, dir, depth)] = ans
-        return ans
-    elif grid[pos] == '\\': # right or down, or up
+    if grid[pos] == '\\': # right or down, or up
         if dir == RIGHT:
             dirs.append(DOWN)
         elif dir == UP:
@@ -93,7 +87,14 @@ def solve(pos, dir, depth=100):
     ans = set()
     for nextdir in dirs:
         nextpos, cells = move_batch(pos, nextdir)
-        ans |= (cells | solve(nextpos, nextdir, depth-1))
+        if (nextpos,nextdir) in hist:
+            # find the loop
+            idx = hist.index((nextpos, nextdir))
+            loop = hist[idx:] + [(pos,dir)]
+            #print([len(DP[x]) if x in DP else -1 for x in loop])
+            #print(loop)
+            return cells
+        ans |= (cells | solve(nextpos, nextdir, hist + [(pos, dir)]))
     
     DP[state] = ans
     return ans
@@ -102,13 +103,16 @@ energized = solve((0, 0), (0, 1))
 
 print('Part 1:', len(energized))
 
-exit()
 ans = 0
-for r,dir in [(-1, DOWN), (R, UP)]:
+for r,dir in [(0, DOWN), (R-1, UP)]:
     for c in range(C):
-        ans = max(ans, solve((r,c), dir))
-for c,dir in [(-1, RIGHT), (C, LEFT)]:
+        new_ans = len(solve((r,c), dir))
+        print(r, c, new_ans)
+        ans = max(ans, new_ans)
+for c,dir in [(0, RIGHT), (C-1, LEFT)]:
     for r in range(R):
-        ans = max(ans, solve((r,c), dir))
+        new_ans = len(solve((r,c), dir))
+        print(r, c, new_ans)
+        ans = max(ans, new_ans)
 
 print('Part 2:', ans)
