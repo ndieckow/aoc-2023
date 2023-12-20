@@ -10,6 +10,14 @@ def memoize(f):
         return val
     return F
 
+def read_grid(input):
+    grid = dict()
+    R,C = len(input),len(input[0])
+    for r,line in enumerate(input):
+        for c,ch in enumerate(line):
+            grid[(r,c)] = int(ch)
+    return grid, R, C
+
 # does it work with defaultdict?
 def grid_bounds(grid, pred=lambda x: True):
     min_r = min(r for (r,c) in grid if pred(grid[(r,c)]))

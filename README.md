@@ -23,10 +23,10 @@ Day | Part 1 | Part 2 | Comment
 14  | 597    | 1316   |
 15  | 397    | 1683   |
 16  | 1552   | 1430   |
-17 | |
-18 | 1857    |
-19 | 1102    | 1102   |
-20 | 798     | 842    |
+17  | 19751  | 19002
+18  | 1857   | ?
+19  | 1102   | 1102   |
+20  | 798    | 842    |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -107,6 +107,13 @@ For part 2, let's first consider the operation level. Let $\ell$ the the length 
 So in total, $\mathcal O(N)$ for part 2 as well.
 
 ## Day 16
+todo
+
+## Day 17
+Just Dijkstra. The number of nodes is $\mathcal O(RC)$, and Dijkstra's algorithm has a complexity of $\mathcal O(\lvert E\rvert \log \lvert V\rvert)$
+
+## Day 18
+soon
 
 ## Day 19
 Rough past days. Will eventually do a writeup on those. Today was better. Funnily, I had the exact same rank in both parts, which was not much over 1000.
