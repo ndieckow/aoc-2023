@@ -110,7 +110,9 @@ So in total, $\mathcal O(N)$ for part 2 as well.
 todo
 
 ## Day 17
-Just Dijkstra. The number of nodes is $\mathcal O(RC)$, and Dijkstra's algorithm has a complexity of $\mathcal O(\lvert E\rvert \log \lvert V\rvert)$
+Just Dijkstra. The number of nodes $V$ is $2RC$, and Dijkstra's algorithm has a complexity of $\mathcal O(\lvert E\rvert \log \lvert V\rvert)$. Each node has at most $6$ neighbors in part 1, and at most $14$ in part 2. We call this constant $k$. By the handshake lemma,
+$$2\lvert E\rvert = \sum_{v \in V} \deg(v) \leq \lvert V \rvert k,$$
+so that $\lvert E \rvert = \mathcal O(\lvert V \rvert)$, giving us a complexity of $\mathcal O(RC \log (RC))$ for both parts.
 
 ## Day 18
 soon
