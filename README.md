@@ -27,6 +27,7 @@ Day | Part 1 | Part 2 | Comment
 18  | 1857   | ?
 19  | 1102   | 1102   |
 20  | 798    | 842    |
+22  | 1621   | 1336   |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
