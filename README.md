@@ -28,6 +28,7 @@ Day | Part 1 | Part 2 | Comment
 19  | 1102   | 1102   |
 20  | 798    | 842    |
 22  | 1621   | 1336   |
+23  | 2966   |
 
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
@@ -124,3 +125,8 @@ I think both parts are linear in the length of the procedure, but I haven't done
 
 ## Day 20
 Today was a bit nasty. The problem was interesting, but tricky to implement. Had to do lots of debugging in part 1. Part 2 required a minimal amount of reverse engineering and some elementary number theory. My code is not generic, because the `interest` array is hardcoded. Despite taking quite long, I still placed below 1000 in both parts.
+
+## Day 23
+For some reason, I really struggled with today's problem. Setting up the graph in part 1 took me over an hour. I tried DP for the second part, but it seems like it's too slow.
+
+Okay, DP worked for part 2, but it takes like 5 minutes. This is the solution I'm gonna go with for now. I might update this later once I figure out a faster one.
