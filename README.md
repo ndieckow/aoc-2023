@@ -106,6 +106,9 @@ I think both parts are linear in the length of the procedure, but I haven't done
 ## Day 20
 Today was a bit nasty. The problem was interesting, but tricky to implement. Had to do lots of debugging in part 1. Part 2 required a minimal amount of reverse engineering and some elementary number theory. My code is not generic, because the `interest` array is hardcoded. Despite taking quite long, I still placed below 1000 in both parts.
 
+## Day 21
+Part 1 is a slightly modified BFS. The nodes are augmented by the remaining steps, which allows us to detect odd/even steps, and add the correct ones to a collection, the length of which we can query to obtain the answer in the end. For part 2, we can re-use this function (call it $S$) to get the number of cells after $n$, $n + R$ and $n + 2R$ steps, where $n = 26501365 \% R$. Define a sequence by $x_i = S(n + iR)$ for $i \geq 0$. It turns out that this sequence is of the form $x_i = a i^2 + b i + c$ for some constants $a,b,c \in \mathbb Z$. We can determine them with Gaussian elimination. The answer for part 2 is then given by $x_i$ with $i = \lfloor 26501365 / R \rfloor$.
+
 ## Day 23
 For some reason, I really struggled with today's problem. Setting up the graph in part 1 took me over an hour. I tried DP for the second part, but it seems like it's too slow.
 

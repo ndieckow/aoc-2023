@@ -1,5 +1,5 @@
 import os
-from helper import *
+from collections import defaultdict, deque
 import numpy as np
 
 # Observation:
@@ -27,16 +27,12 @@ def solve(start, N):
     seen = set([start])
     final = set()
 
-    st = N
-
     while q:
         v, steps = q.pop()
-        if steps < st:
-            st = steps
         if steps % 2 == 0:
             final.add(v)
-        if steps == 0:
-            continue
+            if steps == 0:
+                continue
         for (dr, dc) in [(1,0),(0,1),(-1,0),(0,-1)]:
             nr, nc = v[0]+dr, v[1]+dc
             if grid[(nr % R, nc % C)] == '#' or (nr,nc) in seen:
