@@ -3,33 +3,6 @@ My solution for this year's Advent of Code in Python. Like [last year](https://g
 
 In general, $N$ always refers to the number of lines in the input. If not, I will mention it. Same holds for $R$ and $C$ (rows and columns) when dealing with grids.
 
-## Leaderboard Ranks
-
-Day | Part 1 | Part 2 | Comment
-----|--------|--------|--------
-1   | 22673  | 13824  |
-2   | 3407   | 3047   |
-3   | 5376   | 3456   |
-4   | 304    | 313    |
-5   | 90642  | 66445  | solved it a few days late
-6   | 659    | 3797   |
-7   | 600    | 391    |
-8   | 342    | 325    |
-9   | 13455  | 13149  | needed sleep
-10  | 1000   | 1958   |
-11  | 6086   | 6226   |
-12  | 2106   | 1445   |
-13  | 3518   | 3902   |
-14  | 597    | 1316   |
-15  | 397    | 1683   |
-16  | 1552   | 1430   |
-17  | 19751  | 19002
-18  | 1857   | ?
-19  | 1102   | 1102   |
-20  | 798    | 842    |
-22  | 1621   | 1336   |
-23  | 2966   |
-
 ## Day 01
 For part 1, the complexity is $\mathcal O(N \cdot \ell)$, where $\ell$ is the length of the longest string. Assuming it to be constant, we have linear complexity, $\mathcal O(N)$. For part 2, we have an additional loop through all one-digit numbers, but since there's always exactly 10 of them, the complexity remains linear.
 
@@ -130,3 +103,10 @@ Today was a bit nasty. The problem was interesting, but tricky to implement. Had
 For some reason, I really struggled with today's problem. Setting up the graph in part 1 took me over an hour. I tried DP for the second part, but it seems like it's too slow.
 
 Okay, DP worked for part 2, but it takes like 5 minutes. This is the solution I'm gonna go with for now. I might update this later once I figure out a faster one.
+
+## Day 24
+A different kind of problem today, requiring a bit of linear (and nonlinear) algebra. For part 1, we just iterate over all pairs of hailstones and solve a 2-by-2 system in constant time. So, $\mathcal O(N^2)$ overall.
+
+For part 2, you can build a big nonlinear system with 900 equations (3 equations for each hailstone) and 306 unknowns (3 for position + 3 for velocity + the collision times with the 300 hailstones). You can apparently plug this into Z3 and get the solution. I tried sympy, but it never finished. If you think about it, you only need three equations to determine a straight line in $\R^3$. We know that a solution exists, so if it works for three, it must work for all hailstones. With just 9 equations and 9 unknowns, sympy finishes quickly. But I don't know how it operates (probably some crazy computational algebra), so I can't give a complexity estimate.
+
+I've also tried using Newton's method, but it's very fickle. The initial guess `np.arange(9) * 100000` works best for me (the constant was chosen arbitrarily, you just want to be somewhat close to the true solution). With an ample 39 iterations, it converges to the correct solution, at least on my input.
