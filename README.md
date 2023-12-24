@@ -90,7 +90,14 @@ $$2\lvert E\rvert = \sum_{v \in V} \deg(v) \leq \lvert V \rvert k,$$
 so that $\lvert E \rvert = \mathcal O(\lvert V \rvert)$, giving us a complexity of $\mathcal O(RC \log (RC))$ for both parts.
 
 ## Day 18
-soon
+Did a floodfill for part 1. However, for part 2, this is not fast enough. Luckily, the [shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula) comes to the rescue. The formula gives you the area in linear time, at least in $\R^2$. However, you would like something like
+```
+##
+##
+```
+to be counted as $4$ and not $1$, so we have to add $B/2 + 1$ to the result, where $B$ is the number of boundary points, which we can easily compute from the instructions. To be honest, I just guessed the term, and it turned out correct. Note that $B$ is always an even number, due to the restriction to straight boundaries.
+
+Both parts: $\mathcal O(N)$
 
 ## Day 19
 Rough past days. Will eventually do a writeup on those. Today was better. Funnily, I had the exact same rank in both parts, which was not much over 1000.
@@ -107,6 +114,6 @@ Okay, DP worked for part 2, but it takes like 5 minutes. This is the solution I'
 ## Day 24
 A different kind of problem today, requiring a bit of linear (and nonlinear) algebra. For part 1, we just iterate over all pairs of hailstones and solve a 2-by-2 system in constant time. So, $\mathcal O(N^2)$ overall.
 
-For part 2, you can build a big nonlinear system with 900 equations (3 equations for each hailstone) and 306 unknowns (3 for position + 3 for velocity + the collision times with the 300 hailstones). You can apparently plug this into Z3 and get the solution. I tried sympy, but it never finished. If you think about it, you only need three equations to determine a straight line in $\R^3$. We know that a solution exists, so if it works for three, it must work for all hailstones. With just 9 equations and 9 unknowns, sympy finishes quickly. But I don't know how it operates (probably some crazy computational algebra), so I can't give a complexity estimate.
+For part 2, you can build a big nonlinear system with 900 equations (3 equations for each hailstone) and 306 unknowns (3 for position + 3 for velocity + the collision times with the 300 hailstones). You can apparently plug this into Z3 and get the solution. I tried sympy, but it never finished. Luckily, there is a simplification: If you think about it, you'll realize you only need three equations to determine a straight line in $\R^3$. We know that a solution exists, so if it works for three, it must work for all hailstones. With just 9 equations and 9 unknowns, sympy finishes quickly. But I don't know how it operates (probably some crazy computational algebra), so I can't give a complexity estimate.
 
 I've also tried using Newton's method, but it's very fickle. The initial guess `np.arange(9) * 100000` works best for me (the constant was chosen arbitrarily, you just want to be somewhat close to the true solution). With an ample 39 iterations, it converges to the correct solution, at least on my input.
