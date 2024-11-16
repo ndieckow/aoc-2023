@@ -26,7 +26,9 @@ Today went a lot better! I was reasonably quick and finished both problems in un
 For the complexity, let $N$ be the number of cards, $n_{\mathrm{win}}$ the number of winning numbers and $n_{\mathrm{own}}$ those that you have. All of the `split`s are linear in the length of the line, which is equivalent to $\mathcal O(n_\mathrm{win} + n_\mathrm{own})$, assuming that the numbers are not unbounded. The complexity of set intersection grows linearly in the smaller set, i.e. the winning numbers. In total, we have $\mathcal O(N m)$ where I've set $m \coloneqq n_\mathrm{win} + n_\mathrm{own}$. Part 2 has the same complexity: The "additional cards" thing is handled by integer arithmetic, and the lack of intersection does not reduce the complexity because we still need to process the input.
 
 ## Day 05
-maybe soon
+For part 1, it is sufficient to sort the ranges by the second coordinate (a.k.a. the start of the source range) and then go through the ranges in order. Let $R_{x,y}$ be the number of ranges from the $x \to y$ map (where, e.g., $x$ could be `seed` and $y$ could be `soil`). Then, the worst case time complexity for part 1 is $\mathcal O(\sum_{x,y} R_{x,y} \log R_{x,y})$, since most of the work is sorting. More simply, by letting $R = \max_{x,y} R_{x,y}$, we just get $\mathcal O(R \log R)$ (since we assume the number of transformations to be part of the problem and thus constant).
+
+For part 2, it is infeasible to apply the above approach to each number in the ranges. Instead, we need to transform the ranges as a whole. In the $x \to y$ step, we transform a number of $n$ ranges in $R_{x,y}$ roughly constant-time steps. Each $x \to y$ step on a single range can potentially produce up to $2R_{x,y}+1$ intervals. So, we would theoretically end up with $\sum_{k=1}^6R(2R+1)^k = \mathcal O(R^7)$ steps. However, as there are only $R$ intersections to consider, we can at each transformation only gain at most $2R$ additional ranges *in total*, not for all ranges. This would give us instead at most $R (1 + \sum_{k=1}^6 k2R) = \mathcal O(R^2)$ many steps.
 
 ## Day 06
 Let $T$ and $D$ denote the values for time and distance, respectively.
@@ -39,9 +41,11 @@ I think the best approach is to store all information in a well-chosen state, an
 Because of the sorting, the complexity is $\mathcal O(N \log N)$.
 
 ## Day 08
-I'll have to think about the complexity a bit. It's too simple to say that it depends linearly on the size of the graph, because the problem is so dependent on the graph's structure.
+A nice problem, requiring a bit of thought for the second part, because the brute-force approach doesn't work anymore.
 
-Overall a nice problem, requiring a bit of thought for the second part, because the brute-force approach doesn't work anymore.
+The complexity analysis is a bit useless this time. Essentially, the first part is linear in the length of the path, which of course is unknown to us beforehand. Call it $\mathcal O(p)$. For part 2, let $m$ be the number of start/end node pairs. Then, the complexity is $\mathcal O(pm)$.
+
+Ideally, we would want something as a function of $n$, the size of the graph. But in a directed graph with cycles, there are infinite paths, so a plain worst-case estimate won't help us. We might be able to work something out using the length of the instruction sequence, call it $\ell$. But even then, there will still always be graphs for which a path obtained from such a sequence is infinite.
 
 ## Day 09
 Let $\ell$ be the length of the history (i.e. how many numbers) and $d$ the number of times you can take the differences until you reach all zeros. We may assume $d \leq \ell$. For a particular line, the complexity of repeatedly taking differences is $$\sum_{i=1}^d \ell - i = d\ell - \sum_{i=1}^d i = d\ell - \frac{d(d+1)}{2},$$ which is $\mathcal O(\ell^2)$ in the worst case (the worst case being $d = \ell$).
@@ -51,9 +55,10 @@ Including all lines, the overall worst-case complexity for both parts is then $\
 ## Day 10
 Not a great day for me. I actually expected a grid puzzle, but not something as gruesome as this. I took my time, but I got part 2 to work on all test inputs, yet the answer wasn't correct for the full input. Very annoying, because this puzzle is hard to debug. In fact, it's still not working. But I found the right answer, by first trying the answer $+1$, and then $+2$, which turned out to be the right answer. So there must be some really weird edge case that I'm not considering, I suppose.
 
-Can't be bothered to do a complexity analysis of this pile of garbage. Maybe at a later date.
-
 I ended up solving part 2 using a clever method I found [on reddit](https://www.reddit.com/r/adventofcode/comments/18evyu9/comment/kcqipbx/). It's much shorter than flood-fill and gives the right answer. These kinds of things are the reason why it's sometimes worth to look at abstract maths, such as topology in this case.
+
+The complexity of the first part is linear in the length of the loop. The longest possible loop in an $N \times N$ grid covers every single cell, so $N^2$.
+In the second part, we just scan the grid row-by-row and column-by-column and accumulate some values. Hence, the complexity is $\mathcal O(N^2)$ for both parts.
 
 ## Day 11
 Need moar sleep x.x
