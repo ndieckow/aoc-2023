@@ -98,12 +98,12 @@ ans = 0
 for r,dir in [(-1, DOWN), (R, UP)]:
     for c in range(C):
         new_ans = solve((r,c), dir)
-        print(r, c, new_ans)
+        #print(r, c, new_ans)
         ans = max(ans, new_ans)
 for c,dir in [(-1, RIGHT), (C, LEFT)]:
     for r in range(R):
         new_ans = solve((r,c), dir)
-        print(r, c, new_ans)
+        #print(r, c, new_ans)
         ans = max(ans, new_ans)
 
 print('Part 2:', ans)

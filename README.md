@@ -68,15 +68,20 @@ Took me almost an hour to get the doubling of the rows and columns right. Only t
 The complexity is $\mathcal O(R C + N^2 m)$, where $N$ is the number of galaxies, and $m$ is the number of empty rows and columns. Technically, $m$ is a worst-case estimate: Actually, the complexity of intersecting two sets scales linearly with the size of the smaller set. You could analyze this further. There is obviously a relationship between $N$ and $m$. I wonder, if the complexity is worse than $\mathcal O((RC)^2)$.
 
 ## Day 12
-It's not going too well at the moment. Analysis maybe soon.
+DP is a good option here. For a particular instance, let $n$ be the length of the string, $k$ the number of contiguous blocks of broken springs, and $\ell$ the length of the longest such block. Then the algorithm should run in time $\mathcal O(nk\ell)$. But I'm not super sure.
 
 ## Day 13
 Nasty day. At least in my opinion. According to my ranking, yesterday was apparently easier. Once again, I spent way too much time debugging stuff.
 
-## Day 14
-Got the top 1000 for part 1 after a row a bad days. Quite happy about that :) Wasted a lot of time on debugging for part 2. Turned out that I wasn't thinking it through: Since we've already done a few cycles, the calculation for the number of remaining cycles is $(1000000000 - n) \% (m - n)$, where $m$ is the index where you notice repetition, and $n$ is the index where the repetition starts. I simply forgot the subtraction of $n$ and got a wrong answer.
+Update (19.11.24): Wrote a slightly prettier solution that's only half the size of my initial one. It first converts the blocks to NumPy Arrays of 0s and 1s, allowing me to easily transpose them. Then it's just a matter of iterating through each potential reflection line (a.k.a. row), retrieving the correct number of lines above and below the reflection line and performing an elementwise XOR. In part $i \in \{1,2\}$, the result of that XOR should be $i-1$ ;)
 
-Complexity analysis: maybe soon
+As for complexity, we can consider the worst case of the reflection line being in the very last row (or column). For this case, we have to iterate through $R+C-2$ potential reflection lines, where each iteration involves an operation linear in $\mathcal O(rc)$, where $r$ and $c$ are the dimension of the considered sub-arrays. However, only one of the dimensions is different from $R$ and $C$. In total this gives us a worst-case time complexity of
+$$\sum_{r=1}^{R-1} \mathcal O(rC) + \sum_{c=1}^{C-1} \mathcal O(Rc) = \mathcal O(R^2 C + C^2 R) = \mathcal O(RC(R+C)).$$
+
+## Day 14
+Got the top 1000 for part 1 after a row a bad days. Quite happy about that :) Wasted a lot of time on debugging for part 2. Turned out that I wasn't thinking it through: Since we've already done a few cycles, the calculation for the number of remaining cycles is $(1000000000 - n - 1) \mod (m - n)$, where $m$ is the index where you notice repetition, and $n$ is the index where the repetition starts. I simply forgot the subtraction of $n$ and got a wrong answer.
+
+Complexity analysis: Let $N$ denote the side length of the square grid. The crucial part is the rock-sliding, which can be done in time $\mathcal O(N^2)$. If we assume the number of cycles until it loops to be constant, this still holds up for part 2. 
 
 ## Day 15
 An easier problem, compared to the previous days. There was more of a focus on reading comprehension and computer science education, which is cool. For some reason, I thought sorting would be involved, so the members of my boxes look like (value, key) instead of (key, value). Does not really matter, though.
@@ -87,7 +92,9 @@ For part 2, let's first consider the operation level. Let $\ell$ the the length 
 So in total, $\mathcal O(N)$ for part 2 as well.
 
 ## Day 16
-todo
+Viewing nodes as having both position $(r,c)$ and direction $(dr,dc)$, this is essentially just a DFS. As there are 4 possible directions, we have $4RC = \mathcal O(RC)$ many nodes and, due to the grid structure, also only $\mathcal O(RC)$ many edges. So, the algorithm for part 1 has a time complexity of $\mathcal O(RC)$ in total.
+
+For part 2, we need to iterate over $2R+2C$ starting points, so the complexity here is $\mathcal O(RC(R+C)).$
 
 ## Day 17
 Just Dijkstra. The number of nodes $V$ is $2RC$, and Dijkstra's algorithm has a complexity of $\mathcal O(\lvert E\rvert \log \lvert V\rvert)$. Each node has at most $6$ neighbors in part 1, and at most $14$ in part 2. We call this constant $k$. By the handshake lemma,
@@ -125,3 +132,10 @@ A different kind of problem today, requiring a bit of linear (and nonlinear) alg
 For part 2, you can build a big nonlinear system with 900 equations (3 equations for each hailstone) and 306 unknowns (3 for position + 3 for velocity + the collision times with the 300 hailstones). You can apparently plug this into Z3 and get the solution. I tried sympy, but it never finished. Luckily, there is a simplification: If you think about it, you'll realize you only need three equations to determine a straight line in $\R^3$. We know that a solution exists, so if it works for three, it must work for all hailstones. With just 9 equations and 9 unknowns, sympy finishes quickly. But I don't know how it operates (probably some crazy computational algebra), so I can't give a complexity estimate.
 
 I've also tried using Newton's method, but it's very fickle. The initial guess `np.arange(9) * 100000` works best for me (the constant was chosen arbitrarily, you just want to be somewhat close to the true solution). With an ample 39 iterations, it converges to the correct solution, at least on my input.
+
+## Missing Estimates
+* Day 19
+* Day 20
+* Day 21
+* Day 22
+* Day 23
